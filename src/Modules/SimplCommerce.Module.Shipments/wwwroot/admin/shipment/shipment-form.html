@@ -34,8 +34,8 @@
             <td>{{item.productName}}</td>
             <td>{{item.productSku}}</td>
             <td>
-                Ordered {{item.orderedQuantity}}
-                <span ng-if="item.shippedQuantity"><br />Shipped {{item.shippedQuantity}}</span>
+                {{::vm.translate.get('Ordered')}} {{item.orderedQuantity}}
+                <span ng-if="item.shippedQuantity"><br />{{::vm.translate.get('Shipped')}} {{item.shippedQuantity}}</span>
             </td>
             <td>
                 <input class="form-control" ng-model="item.quantityToShip" />

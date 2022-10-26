@@ -11,10 +11,14 @@ namespace SimplCommerce.Module.Core.Data
             builder.Entity<AppSetting>().HasData(
                 new AppSetting("Global.AssetVersion") { Module = "Core", IsVisibleInCommonSettingPage = true, Value = "1.0" },
                 new AppSetting("Global.AssetBundling") { Module = "Core", IsVisibleInCommonSettingPage = true, Value = "false" },
-                new AppSetting("Theme") { Module = "Core", IsVisibleInCommonSettingPage = false, Value = "Generic" },
-                new AppSetting("Global.DefaultCultureUI") { Module = "Core", IsVisibleInCommonSettingPage = true, Value = "en-US" },
-                new AppSetting("Global.DefaultCultureAdminUI") { Module = "Core", IsVisibleInCommonSettingPage = true, Value = "en-US" },
-                new AppSetting("Global.CurrencyCulture") { Module = "Core", IsVisibleInCommonSettingPage = true, Value = "en-US" },
+                //new AppSetting("Theme") { Module = "Core", IsVisibleInCommonSettingPage = false, Value = "Generic" },
+                //new AppSetting("Global.DefaultCultureUI") { Module = "Core", IsVisibleInCommonSettingPage = true, Value = "en-US" },
+                //new AppSetting("Global.DefaultCultureAdminUI") { Module = "Core", IsVisibleInCommonSettingPage = true, Value = "en-US" },
+                //new AppSetting("Global.CurrencyCulture") { Module = "Core", IsVisibleInCommonSettingPage = true, Value = "en-US" },
+                new AppSetting("Theme") { Module = "Core", IsVisibleInCommonSettingPage = false, Value = "CozaStore" },
+                new AppSetting("Global.DefaultCultureUI") { Module = "Core", IsVisibleInCommonSettingPage = true, Value = "bg-BG" },
+                new AppSetting("Global.DefaultCultureAdminUI") { Module = "Core", IsVisibleInCommonSettingPage = true, Value = "bg-BG" },
+                new AppSetting("Global.CurrencyCulture") { Module = "Core", IsVisibleInCommonSettingPage = true, Value = "bg-BG" },
                 new AppSetting("Global.CurrencyDecimalPlace") { Module = "Core", IsVisibleInCommonSettingPage = true, Value = "2" }
             );
 
@@ -46,12 +50,14 @@ namespace SimplCommerce.Module.Core.Data
 
             builder.Entity<Country>().HasData(
                 new Country("VN") { Code3 = "VNM", Name = "Việt Nam", IsBillingEnabled = true, IsShippingEnabled = true, IsCityEnabled = false, IsZipCodeEnabled = false, IsDistrictEnabled = true },
-                new Country("US") { Code3 = "USA", Name = "United States", IsBillingEnabled = true, IsShippingEnabled = true, IsCityEnabled = true, IsZipCodeEnabled = true, IsDistrictEnabled = false }
+                new Country("US") { Code3 = "USA", Name = "United States", IsBillingEnabled = true, IsShippingEnabled = true, IsCityEnabled = true, IsZipCodeEnabled = true, IsDistrictEnabled = false },
+                new Country("BG") { Code3 = "BG", Name = "Bulgaria", IsBillingEnabled = true, IsShippingEnabled = true, IsCityEnabled = true, IsZipCodeEnabled = true, IsDistrictEnabled = false }
             );
 
             builder.Entity<StateOrProvince>().HasData(
                 new StateOrProvince(1) { CountryId = "VN", Name = "Hồ Chí Minh", Type = "Thành Phố" },
-                new StateOrProvince(2) { CountryId = "US", Name = "Washington", Code = "WA" }
+                new StateOrProvince(2) { CountryId = "US", Name = "Washington", Code = "WA" },
+                new StateOrProvince(3) { CountryId = "BG", Name = "Bulgaria", Code = "BG" }
             );
 
             builder.Entity<District>().HasData(

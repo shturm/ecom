@@ -218,9 +218,10 @@ namespace SimplCommerce.WebHost.Extensions
 
         public static IServiceCollection AddCustomizedDataStore(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContextPool<SimplDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
-                    b => b.MigrationsAssembly("SimplCommerce.WebHost")));
+            services.AddDbContextPool<SimplDbContext>(
+                //options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
+                options => options.UseSqlite(configuration.GetConnectionString("DefaultConnection"),
+                b => b.MigrationsAssembly("SimplCommerce.WebHost")));
             return services;
         }
 

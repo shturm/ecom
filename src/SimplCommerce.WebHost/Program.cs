@@ -31,8 +31,14 @@ app.Run();
 void ConfigureService() 
 {
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-    builder.Configuration.AddEntityFrameworkConfig(options =>
-        options.UseSqlServer(connectionString));
+    builder.Configuration.AddEntityFrameworkConfig(
+        options => {
+            //options.UseSqlServer(connectionString);
+            //options.EnableSensitiveDataLogging();
+            options.UseSqlite(connectionString);
+        }
+        //options => options.UseSqlite(connectionString)
+    );
 
     GlobalConfiguration.WebRootPath = builder.Environment.WebRootPath;
     GlobalConfiguration.ContentRootPath = builder.Environment.ContentRootPath;
@@ -101,7 +107,7 @@ void Configure()
         a => a.UseStatusCodePagesWithReExecute("/Home/ErrorWithCode/{0}")
     );
 
-    app.UseHttpsRedirection();
+    //app.UseHttpsRedirection();
     app.UseCustomizedStaticFiles(builder.Environment);
     app.UseRouting();
     app.UseSwagger();
@@ -122,7 +128,7 @@ void Configure()
             name: "default",
             pattern: "{controller=Home}/{action=Index}/{id?}");
     });
-
+    
     var moduleInitializers = app.Services.GetServices<IModuleInitializer>();
     foreach (var moduleInitializer in moduleInitializers)
     {
