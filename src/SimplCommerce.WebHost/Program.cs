@@ -4,6 +4,7 @@ using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.EntityFrameworkCore;
@@ -83,7 +84,9 @@ void ConfigureService()
 }
 
 void Configure()
-    { 
+{
+    
+
     if (app.Environment.IsDevelopment())
     {
         app.UseDeveloperExceptionPage();
@@ -96,6 +99,13 @@ void Configure()
             a => a.UseExceptionHandler("/Home/Error")
         );
         app.UseHsts();
+
+        // for nginx reverse proxy
+        app.UseForwardedHeaders(new ForwardedHeadersOptions
+        {
+            ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+        });
+        app.UseAuthentication();
     }
 
     app.UseWhen(
